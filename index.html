@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hridesh | Gym Instructor & Personal Trainer</title>
+  <meta name="description" content="Portfolio website for Hridesh — a certified gym instructor and personal trainer offering strength training, fat loss, mobility, nutrition, and online coaching." />
+  <meta name="keywords" content="Hridesh, gym instructor, personal trainer, fitness coach, strength training, fat loss, mobility, nutrition coaching, online coaching" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <meta property="og:title" content="Hridesh | Gym Instructor & Personal Trainer" />
+  <meta property="og:description" content="Transform your body and mindset with personalized programs by Hridesh." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'><rect width='100%' height='100%' fill='%230ea5e9'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='64' fill='white'>HRIDESH FITNESS</text></svg>" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230ea5e9'/%3E%3Cpath d='M18 22h6v20h-6zM40 22h6v20h-6zM24 26h16v12H24z' fill='%23fff'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-elev: #0f162d;
+      --text: #e6edf6;
+      --muted: #a5b3ce;
+      --primary: #0ea5e9;
+      --primary-600: #0284c7;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --card: #0d1428;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 14px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7fafc;
+        --bg-elev: #ffffff;
+        --text: #0f172a;
+        --muted: #4b5563;
+        --card: #ffffff;
+        --border: rgba(0,0,0,0.1);
+        --shadow: 0 10px 25px rgba(0,0,0,0.08);
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: radial-gradient(1000px 600px at 100% -10%, rgba(14,165,233,0.12), transparent 60%) no-repeat,
+                  radial-gradient(1000px 600px at 0% 110%, rgba(245,158,11,0.12), transparent 60%) no-repeat,
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: saturate(140%) blur(10px);
+      background: color-mix(in oklab, var(--bg-elev) 80%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.9rem 0;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 0.6rem; font-weight: 800; letter-spacing: 0.4px;
+    }
+    .brand svg { width: 28px; height: 28px; }
+    .brand span { color: var(--text); }
+    nav ul { list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0; }
+    nav a { color: var(--text); opacity: 0.85; padding: 0.5rem 0.75rem; border-radius: 10px; }
+    nav a:hover, nav a:focus { background: var(--border); opacity: 1; }
+    .actions { display: flex; gap: 0.6rem; align-items: center; }
+    .btn, button.btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.72rem 1rem; border: none; border-radius: 12px;
+      font-weight: 700; cursor: pointer; transition: transform .08s ease;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-600)); color: white; }
+    .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .btn:hover { transform: translateY(-1px); }
+    .mobile-toggle { display: none; background: transparent; border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem; color: var(--text); }
+    @media (max-width: 900px) {
+      nav ul { display: none; position: absolute; left: 0; right: 0; top: 64px; background: var(--bg-elev); padding: 1rem; border-bottom: 1px solid var(--border); }
+      nav ul.open { display: grid; gap: 0.4rem; }
+      .mobile-toggle { display: inline-flex; }
+      .actions .btn { display: none; } /* save space on small screens */
+    }
+    /* Hero */
+    .hero {
+      padding: 4rem 0 2rem;
+      display: grid; gap: 2rem;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+    }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-top: 2rem; } }
+    .tag {
+      display: inline-flex; gap: 0.5rem; align-items: center;
+      background: color-mix(in oklab, var(--primary) 16%, transparent);
+      color: var(--text); border: 1px solid var(--border);
+      padding: 0.35rem 0.65rem; border-radius: 999px; font-weight: 600; font-size: 0.95rem;
+    }
+    .headline { font-size: clamp(2rem, 3.5vw, 3rem); margin: 0.8rem 0 0.4rem; line-height: 1.2; }
+    .sub { color: var(--muted); font-size: 1.05rem; }
+    .cta { margin-top: 1.2rem; display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.6rem; }
+    .stat {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+    .stat b { font-size: 1.4rem; }
+    .art {
+      aspect-ratio: 4/3; border-radius: 22px; border: 1px solid var(--border);
+      background:
+        radial-gradient(600px 300px at 70% 10%, rgba(14,165,233,0.35), transparent 50%),
+        radial-gradient(600px 300px at 20% 90%, rgba(245,158,11,0.25), transparent 50%),
+        linear-gradient(180deg, color-mix(in oklab, var(--bg-elev) 80%, transparent), var(--bg-elev));
+      box-shadow: var(--shadow); position: relative; overflow: hidden;
+    }
+    .art svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.9; }
+    .badge {
+      position: absolute; top: 16px; right: 16px; background: rgba(16,185,129,0.12);
+      color: var(--text); border: 1px solid var(--border); padding: 0.4rem 0.7rem; border-radius: 999px; font-weight: 700;
+    }
+    /* Sections */
+    section { padding: 3.5rem 0; }
+    .section-title { font-size: clamp(1.4rem, 2.2vw, 2rem); margin-bottom: 1.4rem; }
+    .grid { display: grid; gap: 1rem; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 900px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem;
+      box-shadow: var(--shadow);
+    }
+    .program .icon {
+      width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center;
+      background: color-mix(in oklab, var(--primary) 18%, transparent);
+      border: 1px solid var(--border);
+    }
+    .muted { color: var(--muted); }
+    .list { display: grid; gap: 0.45rem; padding-left: 1.1rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.35rem 0.65rem; border: 1px solid var(--border); border-radius: 999px;
+      background: color-mix(in oklab, var(--bg-elev) 86%, transparent);
+      font-size: 0.92rem;
+    }
+    .pricing { align-items: stretch; }
+    .price { font-weight: 900; font-size: 1.8rem; margin: 0.4rem 0; }
+    .highlight { outline: 2px solid color-mix(in oklab, var(--primary) 40%, transparent); transform: scale(1.01); }
+    /* Schedule table */
+    .table {
+      width: 100%; border-collapse: collapse; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border);
+    }
+    .table th, .table td { padding: 0.8rem; border-bottom: 1px solid var(--border); }
+    .table th { background: color-mix(in oklab, var(--bg-elev) 90%, transparent); text-align: left; }
+    .table tr:hover td { background: color-mix(in oklab, var(--bg-elev) 94%, transparent); }
+    /* Gallery */
+    .gallery { grid-template-columns: repeat(6, 1fr); }
+    .gallery .tile { aspect-ratio: 1/1; border-radius: 16px; border: 1px solid var(--border); overflow: hidden; position: relative; background: linear-gradient(135deg, rgba(14,165,233,0.25), rgba(245,158,11,0.25)); }
+    .gallery .tile:nth-child(odd) { background: linear-gradient(135deg, rgba(14,165,233,0.35), rgba(16,185,129,0.25)); }
+    .gallery .tile small {
+      position: absolute; left: 10px; bottom: 10px; right: 10px; color: white; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    @media (max-width: 1100px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+    /* Contact */
+    form { display: grid; gap: 0.8rem; }
+    .row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    @media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
+    label { font-weight: 700; font-size: 0.95rem; }
+    input, select, textarea {
+      width: 100%; padding: 0.75rem 0.9rem; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-elev); color: var(--text);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    .contact-cards { grid-template-columns: 1.2fr 1fr; align-items: start; }
+    @media (max-width: 900px) { .contact-cards { grid-template-columns: 1fr; } }
+    footer {
+      padding: 2rem 0; border-top: 1px solid var(--border); color: var(--muted); text-align: center;
+      background: color-mix(in oklab, var(--bg-elev) 75%, transparent);
+    }
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(12px); }
+    .reveal.show { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
+    /* Utility */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .flex { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .sep { height: 1px; background: var(--border); margin: 1rem 0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Hridesh",
+    "jobTitle": "Gym Instructor & Personal Trainer",
+    "description": "Certified fitness coach offering 1:1 training, fat loss, strength, mobility, and nutrition guidance.",
+    "url": "https://hridesh-fitness.example.com/",
+    "image": "https://hridesh-fitness.example.com/portrait.jpg",
+    "sameAs": [
+      "https://instagram.com/hridesh.fit",
+      "https://youtube.com/@hrideshfit"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Your City",
+      "addressCountry": "IN"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="sr-only">Skip to content</a>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <svg aria-hidden="true" viewBox="0 0 64 64">
+          <rect x="10" y="24" width="8" height="16" rx="2" fill="currentColor" />
+          <rect x="46" y="24" width="8" height="16" rx="2" fill="currentColor" />
+          <rect x="22" y="28" width="20" height="8" rx="3" fill="currentColor" />
+        </svg>
+        <span>Hridesh Fitness</span>
+      </div>
+      <nav aria-label="Primary">
+        <button class="mobile-toggle" aria-controls="menu" aria-expanded="false" id="mobileToggle">Menu</button>
+        <ul id="menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#testimonials">Success</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="actions">
+        <button class="btn btn-ghost" id="themeToggle" aria-label="Toggle theme">Theme</button>
+        <a class="btn btn-primary" href="#contact">Book a Session</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container">
+      <div>
+        <span class="tag" aria-label="Availability">
+          💪 Certified Trainer • New clients welcome
+        </span>
+        <h1 class="headline">Transform your body and mindset with Hridesh</h1>
+        <p class="sub">
+          I’m Hridesh — a gym instructor and personal trainer helping busy people build strength,
+          lose fat, and move pain‑free with simple, proven systems.
+        </p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#pricing">See Packages</a>
+          <a class="btn btn-ghost" href="#programs">Explore Programs</a>
+        </div>
+        <div class="stats">
+          <div class="stat reveal">
+            <div class="muted">Experience</div>
+            <b>7+ years</b>
+          </div>
+          <div class="stat reveal">
+            <div class="muted">Clients Transformed</div>
+            <b>250+</b>
+          </div>
+          <div class="stat reveal">
+            <div class="muted">Certifications</div>
+            <b>ACE, CPR</b>
+          </div>
+        </div>
+      </div>
+      <div class="art reveal" aria-hidden="true">
+        <span class="badge">1:1 & Online</span>
+        <svg viewBox="0 0 600 450" role="img">
+          <title>Fitness Illustration</title>
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.1)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0.0)"/>
+            </linearGradient>
+          </defs>
+          <g transform="translate(300,225)">
+            <ellipse rx="220" ry="120" fill="url(#g1)"></ellipse>
+          </g>
+          <g transform="translate(300,240) scale(1.2)">
+            <rect x="-160" y="-30" width="60" height="60" rx="8" fill="rgba(255,255,255,0.12)" />
+            <rect x="100" y="-30" width="60" height="60" rx="8" fill="rgba(255,255,255,0.12)" />
+            <rect x="-110" y="-20" width="220" height="40" rx="12" fill="rgba(255,255,255,0.9)" />
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="container" id="about">
+      <h2 class="section-title">About Hridesh</h2>
+      <div class="grid grid-2">
+        <div class="card reveal">
+          <p>
+            I specialize in practical training for real life. Whether you’re starting from scratch,
+            getting back after a break, or chasing a new PR — I’ll help you build a plan that fits
+            your schedule, your body, and your goals.
+          </p>
+          <p class="muted">
+            Expect accountability, personalized programming, and clear progress tracking — with a
+            focus on strength, mobility, and sustainable nutrition.
+          </p>
+          <div class="flex">
+            <span class="pill">ACE Certified</span>
+            <span class="pill">First Aid & CPR</span>
+            <span class="pill">Kettlebell Level 1</span>
+            <span class="pill">Mobility Specialist</span>
+          </div>
+        </div>
+        <div class="card reveal">
+          <h3>What you’ll get</h3>
+          <ul class="list">
+            <li>Customized workouts aligned to your goals and schedule</li>
+            <li>Form checks and technique coaching</li>
+            <li>Habit-based nutrition guidance (no fad diets)</li>
+            <li>Weekly progress reviews and adjustments</li>
+            <li>App-based tracking and at-home alternatives</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="programs">
+      <h2 class="section-title">Training Programs</h2>
+      <div class="grid grid-3">
+        <div class="card program reveal">
+          <div class="icon">🏋️</div>
+          <h3>Strength Training</h3>
+          <p class="muted">Progressive overload programming for safe, sustainable strength gains.</p>
+          <ul class="list">
+            <li>Compound lifts and accessory work</li>
+            <li>Mobility and recovery protocols</li>
+          </ul>
+        </div>
+        <div class="card program reveal">
+          <div class="icon">🔥</div>
+          <h3>Fat Loss Coaching</h3>
+          <p class="muted">Evidence-based, sustainable fat loss without extreme restrictions.</p>
+          <ul class="list">
+            <li>Calorie targets and habit stacking</li>
+            <li>Cardio plan tailored to lifestyle</li>
+          </ul>
+        </div>
+        <div class="card program reveal">
+          <div class="icon">🧘</div>
+          <h3>Mobility & Rehab</h3>
+          <p class="muted">Move better, reduce pain, and improve posture with corrective routines.</p>
+          <ul class="list">
+            <li>Joint-by-joint approach</li>
+            <li>Prehab and activation work</li>
+          </ul>
+        </div>
+        <div class="card program reveal">
+          <div class="icon">🥗</div>
+          <h3>Nutrition Coaching</h3>
+          <p class="muted">Simple, practical nutrition for performance and body composition.</p>
+          <ul class="list">
+            <li>Macro guidance and meal templates</li>
+            <li>Weekly check-ins and feedback</li>
+          </ul>
+        </div>
+        <div class="card program reveal">
+          <div class="icon">🌐</div>
+          <h3>Online Coaching</h3>
+          <p class="muted">Remote programming, video form checks, and accountability via app.</p>
+          <ul class="list">
+            <li>Anywhere, anytime</li>
+            <li>Monthly or quarterly plans</li>
+          </ul>
+        </div>
+        <div class="card program reveal">
+          <div class="icon">🏃</div>
+          <h3>Functional Fitness</h3>
+          <p class="muted">Build capacity for work and life with dynamic, full-body training.</p>
+          <ul class="list">
+            <li>Core stability and conditioning</li>
+            <li>Movement quality focus</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="testimonials">
+      <h2 class="section-title">Client Success Stories</h2>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <p>“Down 12 kg in 16 weeks and stronger than ever. I finally enjoy training.”</p>
+          <p class="muted">— Priya, 34</p>
+        </div>
+        <div class="card reveal">
+          <p>“Back pain gone. I can play with my kids without fear. The mobility work is gold.”</p>
+          <p class="muted">— Arjun, 41</p>
+        </div>
+        <div class="card reveal">
+          <p>“Bench +20 kg and a visible body recomposition. Clear plan, clear progress.”</p>
+          <p class="muted">— Neha, 28</p>
+        </div>
+      </div>
+      <div class="sep"></div>
+      <div class="gallery grid reveal">
+        <div class="tile"><small>Client A • −12kg / 16 weeks</small></div>
+        <div class="tile"><small>Client B • Posture fix</small></div>
+        <div class="tile"><small>Client C • +6 kg lean mass</small></div>
+        <div class="tile"><small>Client D • 5K PR</small></div>
+        <div class="tile"><small>Client E • Pain-free squat</small></div>
+        <div class="tile"><small>Client F • Lifestyle reset</small></div>
+      </div>
+    </section>
+
+    <section class="container" id="certs">
+      <h2 class="section-title">Certifications</h2>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <h3>ACE CPT</h3>
+          <p class="muted">American Council on Exercise — Certified Personal Trainer</p>
+        </div>
+        <div class="card reveal">
+          <h3>CPR/AED</h3>
+          <p class="muted">Emergency response certification for client safety</p>
+        </div>
+        <div class="card reveal">
+          <h3>Kettlebell L1</h3>
+          <p class="muted">Safe technique and programming for kettlebell training</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="pricing">
+      <h2 class="section-title">Pricing & Packages</h2>
+      <div class="grid grid-3 pricing">
+        <div class="card reveal">
+          <h3>Starter</h3>
+          <p class="muted">Perfect to kickstart your journey</p>
+          <p class="price">₹4,999 / month</p>
+          <ul class="list">
+            <li>8 sessions (2/week)</li>
+            <li>Personalized plan</li>
+            <li>Form coaching</li>
+          </ul>
+          <div class="sep"></div>
+          <a class="btn btn-ghost" href="#contact">Enquire</a>
+        </div>
+        <div class="card highlight reveal">
+          <h3>Transformation</h3>
+          <p class="muted">Best results in 12–16 weeks</p>
+          <p class="price">₹8,999 / month</p>
+          <ul class="list">
+            <li>12 sessions (3/week)</li>
+            <li>Nutrition coaching</li>
+            <li>Weekly progress review</li>
+            <li>Chat support</li>
+          </ul>
+          <div class="sep"></div>
+          <a class="btn btn-primary" href="#contact">Get Started</a>
+        </div>
+        <div class="card reveal">
+          <h3>Online Coaching</h3>
+          <p class="muted">Train from anywhere</p>
+          <p class="price">₹3,499 / month</p>
+          <ul class="list">
+            <li>Custom program in app</li>
+            <li>Video form checks</li>
+            <li>Weekly check-ins</li>
+          </ul>
+          <div class="sep"></div>
+          <a class="btn btn-ghost" href="#contact">Enquire</a>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:0.8rem">Note: Pricing varies by location and schedule. Corporate and group training available.</p>
+    </section>
+
+    <section class="container" id="schedule">
+      <h2 class="section-title">Weekly Schedule (Sample)</h2>
+      <div class="card reveal">
+        <table class="table" aria-label="Sample availability schedule">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Morning</th>
+              <th>Afternoon</th>
+              <th>Evening</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Mon</td><td>6–10 AM</td><td>—</td><td>5–8 PM</td></tr>
+            <tr><td>Tue</td><td>6–9 AM</td><td>2–4 PM</td><td>6–8 PM</td></tr>
+            <tr><td>Wed</td><td>6–10 AM</td><td>—</td><td>5–8 PM</td></tr>
+            <tr><td>Thu</td><td>6–9 AM</td><td>2–4 PM</td><td>6–8 PM</td></tr>
+            <tr><td>Fri</td><td>6–10 AM</td><td>—</td><td>5–7 PM</td></tr>
+            <tr><td>Sat</td><td>8–12 PM</td><td>—</td><td>—</td></tr>
+            <tr><td>Sun</td><td colspan="3">Rest day (online check-ins only)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="container" id="contact">
+      <h2 class="section-title">Contact & Bookings</h2>
+      <div class="grid contact-cards">
+        <div class="card reveal">
+          <form id="contactForm" novalidate>
+            <div class="row">
+              <div>
+                <label for="name">Full Name</label>
+                <input id="name" name="name" required placeholder="Your name" />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required placeholder="you@example.com" />
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" inputmode="tel" placeholder="+91 ..." />
+              </div>
+              <div>
+                <label for="service">Service</label>
+                <select id="service" name="service">
+                  <option>Strength Training</option>
+                  <option>Fat Loss Coaching</option>
+                  <option>Mobility & Rehab</option>
+                  <option>Nutrition Coaching</option>
+                  <option>Online Coaching</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="message">Your Goals</label>
+              <textarea id="message" name="message" placeholder="Tell me about your goals, schedule, and experience..."></textarea>
+            </div>
+            <div class="row">
+              <div>
+                <label for="pref">Preferred Contact</label>
+                <select id="pref" name="pref">
+                  <option>Email</option>
+                  <option>Phone</option>
+                  <option>WhatsApp</option>
+                </select>
+              </div>
+              <div>
+                <label for="when">Ideal Start</label>
+                <input id="when" name="when" type="date" />
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Send Enquiry</button>
+            <p class="muted" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="card reveal">
+          <h3>Other ways to reach me</h3>
+          <p><strong>Email:</strong> <a href="mailto:hridesh.fit@example.com">hridesh.fit@example.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+919999999999">+91 99999 99999</a></p>
+          <p><strong>Location:</strong> Your City, India</p>
+          <div class="flex">
+            <a class="pill" href="https://instagram.com/hridesh.fit" target="_blank" rel="noopener">Instagram</a>
+            <a class="pill" href="https://youtube.com/@hrideshfit" target="_blank" rel="noopener">YouTube</a>
+          </div>
+          <div class="sep"></div>
+          <p class="muted">I usually reply within 24 hours. Limited spots for 1:1 sessions.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>© <span id="year"></span> Hridesh Fitness. All rights reserved.</div>
+      <div class="muted" style="margin-top:0.3rem">Built with performance and accessibility in mind.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const mobileToggle = document.getElementById('mobileToggle');
+    const menu = document.getElementById('menu');
+    mobileToggle?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    // Close menu when selecting a link
+    menu?.addEventListener('click', e => {
+      if (e.target.tagName === 'A') menu.classList.remove('open');
+    });
+
+    // Theme toggle with localStorage
+    const themeToggle = document.getElementById('themeToggle');
+    const applyTheme = (mode) => {
+      if (mode === 'dark') document.documentElement.style.colorScheme = 'dark';
+      if (mode === 'light') document.documentElement.style.colorScheme = 'light';
+      localStorage.setItem('theme', mode);
+      themeToggle.innerText = mode === 'dark' ? 'Light' : 'Dark';
+    };
+    const saved = localStorage.getItem('theme');
+    if (saved) applyTheme(saved);
+    themeToggle?.addEventListener('click', () => {
+      const isDark = getComputedStyle(document.documentElement).colorScheme === 'dark';
+      applyTheme(isDark ? 'light' : 'dark');
+    });
+
+    // Simple reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact form handler -> compose mailto
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const name = (data.get('name') || '').toString().trim();
+      const email = (data.get('email') || '').toString().trim();
+      if (!name || !email) {
+        status.textContent = 'Please fill in your name and a valid email.';
+        status.style.color = 'var(--danger)';
+        return;
+      }
+      const phone = (data.get('phone') || '').toString().trim();
+      const service = data.get('service');
+      const pref = data.get('pref');
+      const when = data.get('when');
+      const message = (data.get('message') || '').toString().trim();
+      const subject = encodeURIComponent(`New enquiry from ${name} — ${service}`);
+      const body = encodeURIComponent(
+`Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Service: ${service}
+Preferred contact: ${pref}
+Ideal start: ${when}
+
+Goals / Message:
+${message}
+`);
+      const mailto = `mailto:hridesh.fit@example.com?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+      status.textContent = 'Opening your email client... If it does not open, send an email to hridesh.fit@example.com.';
+      status.style.color = 'var(--success)';
+      form.reset();
+    });
+  </script>
+  <!--
+  License: MIT
+  Copyright (c) 2025 Hridesh
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+  -->
+</body>
+</html>
